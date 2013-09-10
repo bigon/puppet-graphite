@@ -2,7 +2,7 @@
 #
 class graphite::carbon::params {
   $config_dir = $::osfamily ? {
-    /(?i:Debian)/ => '/opt/graphite/conf',
+    /(?i:Debian)/ => '/etc/carbon',
     /(?i:RedHat)/ => '/etc/carbon',
     default       => '/etc/carbon',
   }

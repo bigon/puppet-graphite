@@ -2,7 +2,7 @@
 #
 class graphite::web::params {
   $config_dir = $::osfamily ? {
-    /(?i:Debian)/ => '/opt/graphite/webapp/graphite',
+    /(?i:Debian)/ => '/etc/graphite',
     /(?i:RedHat)/ => '/etc/graphite-web',
     default       => '/etc/graphite-web',
   }

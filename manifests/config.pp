@@ -5,7 +5,7 @@ class graphite::config {
 
   if $::osfamily == 'Debian' {
     exec { 'syncdb':
-      command => 'python manage.py syncdb',
+      command => 'graphite-manage syncdb',
       path    => '/usr/bin',
       cwd     => $config_dir,
     }

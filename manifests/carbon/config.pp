@@ -29,24 +29,5 @@ class graphite::carbon::config {
       content => template("graphite/carbon.conf.${::osfamily}.erb"),
     }
   }
-
-  if $::osfamily == 'Debian' {
-    file { '/opt/graphite/storage':
-      ensure  => directory,
-      recurse => true,
-      owner   => $www_user,
-      group   => $www_group,
-      before  => Service[$service_name],
-    }
-
-    file { '/etc/init.d/carbon-cache':
-      ensure  => present,
-      mode    => '0755',
-      owner   => '0',
-      group   => '0',
-      content => template('graphite/carbon-cache_Debian.init'),
-      before  => Service[$service_name],
-    }
-  }
 }
 
