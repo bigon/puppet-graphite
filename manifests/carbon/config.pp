@@ -12,7 +12,7 @@ class graphite::carbon::config {
     group  => '0',
     mode   => '0644',
     owner  => '0',
-    notify => Service['carbon-cache'];
+    notify => Service[$::graphite::carbon::params::service_name];
   }
 
   concat::fragment { 'header':

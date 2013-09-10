@@ -10,7 +10,7 @@ define graphite::carbon::storage (
     target  => "${config_dir}/storage-schemas.conf",
     order   => 10,
     content => template('graphite/storage-schemas.erb'),
-    notify  => Service['carbon-cache']
+    notify  => Service[$::graphite::carbon::params::service_name]
   }
 }
 
