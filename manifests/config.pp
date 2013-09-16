@@ -8,6 +8,7 @@ class graphite::config {
       command => 'graphite-manage syncdb',
       path    => '/usr/bin',
       cwd     => $config_dir,
+      creates => '/var/lib/graphite/graphite.db',
     }
   }
 }
