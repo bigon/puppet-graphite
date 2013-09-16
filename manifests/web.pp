@@ -16,7 +16,7 @@
 #
 class graphite::web (
   $manage_httpd = $::graphite::params::manage_httpd,
-  $manage_httpd = $::graphite::params::config_dir,
+  $config_dir   = $::graphite::params::config_dir,
 ) {
   include graphite::web::params
   include graphite::web::package
