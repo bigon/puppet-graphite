@@ -9,5 +9,14 @@ class graphite::carbon::service {
     hasrestart => true,
     hasstatus  => true,
   }
+  if ($::osfamily == 'Debian'){
+    augeas { "CARBON_CACHE_ENABLED":
+      context => "/files//etc/default/graphite-carbon",
+      changes => [
+        "set CARBON_CACHE_ENABLED true",
+      ],
+      before  => Service["$service_name"],
+    }
+  }
 }
 
