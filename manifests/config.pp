@@ -9,6 +9,7 @@ class graphite::config {
       path    => '/usr/bin',
       cwd     => $config_dir,
       creates => '/var/lib/graphite/graphite.db',
+      user    => '_graphite',
     }
   }
 }
