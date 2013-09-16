@@ -5,7 +5,7 @@ class graphite::config {
 
   if $::osfamily == 'Debian' {
     exec { 'syncdb':
-      command => 'graphite-manage syncdb',
+      command => 'graphite-manage syncdb --noinput',
       path    => '/usr/bin',
       cwd     => $config_dir,
       creates => '/var/lib/graphite/graphite.db',
