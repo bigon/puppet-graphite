@@ -1,20 +1,22 @@
 <VirtualHost *:80>
-    ServerName   <%= @fqdn %>
-    DocumentRoot "/opt/graphite/webapp"
-    ErrorLog     /var/log/apache2/graphite_error.log
-    CustomLog    /var/log/apache2/graphite_access.log common
 
-    <Location "/">
-        SetHandler python-program
-        PythonPath "['/opt/graphite/webapp'] + sys.path"
-        PythonHandler django.core.handlers.modpython
-        SetEnv DJANGO_SETTINGS_MODULE graphite.settings
-        PythonDebug Off
-        PythonAutoReload Off
-    </Location>
+	WSGIDaemonProcess _graphite processes=5 threads=5 display-name='%{GROUP}' inactivity-timeout=120 user=_graphite group=_graphite
+	WSGIProcessGroup _graphite
+	WSGIImportScript /usr/share/graphite-web/graphite.wsgi process-group=_graphite application-group=%{GLOBAL}
+	WSGIScriptAlias / /usr/share/graphite-web/graphite.wsgi
 
-    <Location "/content/">
-        SetHandler None
-    </Location>
+	Alias /content/ /usr/share/graphite-web/static/
+	<Location "/content/">
+		SetHandler None
+	</Location>
+
+	ErrorLog ${APACHE_LOG_DIR}/graphite-web_error.log
+
+	# Possible values include: debug, info, notice, warn, error, crit,
+	# alert, emerg.
+	LogLevel warn
+
+	CustomLog ${APACHE_LOG_DIR}/graphite-web_access.log combined
+
 </VirtualHost>
 
