@@ -3,6 +3,7 @@
 class graphite::web::config {
   $config_dir   = $::graphite::web::config_dir
   $service_name = $::graphite::web::params::service_name
+  $time_zone    = $::graphite::web::time_zone
 
   file { 'local_settings.py':
     ensure    => file,

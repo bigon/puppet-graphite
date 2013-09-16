@@ -17,6 +17,7 @@
 class graphite::web (
   $manage_httpd = $::graphite::params::manage_httpd,
   $config_dir   = $::graphite::params::config_dir,
+  $time_zone    = $::graphite::params::time_zone,
 ) {
   include graphite::web::params
   include graphite::web::package
